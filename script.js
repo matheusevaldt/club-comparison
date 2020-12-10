@@ -1,8 +1,9 @@
 // Variables.
 const content = document.querySelector('.content');
 
-let clubs = [
+let CLUBS_DATA = [
     {
+        id: '01',
         name: 'Atlético Mineiro',
         fullName: 'Clube Atlético Mineiro',
         state: 'Minas Gerais',
@@ -18,6 +19,7 @@ let clubs = [
         }
     },
     {
+        id: '02',
         name: 'Botafogo',
         fullName: 'Botafogo de Futebol e Regatas',
         state: 'Rio de Janeiro',
@@ -33,6 +35,7 @@ let clubs = [
         }
     },
     {
+        id: '03',
         name: 'Corinthians',
         fullName: 'Sport Club Corinthians Paulista',
         state: 'São Paulo',
@@ -48,6 +51,7 @@ let clubs = [
         }
     },
     {
+        id: '04',
         name: 'Cruzeiro',
         fullName: 'Cruzeiro Esporte Clube',
         state: 'Minas Gerais',
@@ -63,6 +67,7 @@ let clubs = [
         }
     },
     {
+        id: '05',
         name: 'Flamengo',
         fullName: 'Clube de Regatas do Flamengo',
         state: 'Rio de Janeiro',
@@ -78,6 +83,7 @@ let clubs = [
         }
     },
     {
+        id: '06',
         name: 'Fluminense',
         fullName: 'Fluminense Football Club',
         state: 'Rio de Janeiro',
@@ -93,6 +99,7 @@ let clubs = [
         }
     },
     {
+        id: '07',
         name: 'Grêmio',
         fullName: 'Grêmio Foot-Ball Porto Alegrense',
         state: 'Rio Grande do Sul',
@@ -108,6 +115,7 @@ let clubs = [
         }
     },
     {
+        id: '08',
         name: 'Internacional',
         fullName: 'Sport Club Internacional',
         state: 'Rio Grande do Sul',
@@ -123,6 +131,7 @@ let clubs = [
         }
     },
     {
+        id: '09',
         name: 'Palmeiras',
         fullName: 'Sociedade Esportiva Palmeiras',
         state: 'São Paulo',
@@ -138,6 +147,7 @@ let clubs = [
         }
     },
     {
+        id: '10',
         name: 'Santos',
         fullName: 'Santos Futebol Clube',
         state: 'São Paulo',
@@ -153,6 +163,7 @@ let clubs = [
         }
     },
     {
+        id: '11',
         name: 'São Paulo',
         fullName: 'São Paulo Futebol Clube',
         state: 'São Paulo',
@@ -168,6 +179,7 @@ let clubs = [
         }
     },
     {
+        id: '12',
         name: 'Vasco',
         fullName: 'Clube de Regatas Vasco da Gama',
         state: 'Rio de Janeiro',
@@ -185,7 +197,7 @@ let clubs = [
 ];
 
 function test() {
-    clubs.map(club => {
+    CLUBS_DATA.map(club => {
         const div = document.createElement('div');
         const name = document.createElement('p');
         const fullName = document.createElement('p');
@@ -201,4 +213,61 @@ function test() {
     });
 }
 
-test();
+// test();
+
+const clubs = [
+    { id: '01', name: 'atletico mineiro' },
+    { id: '02', name: 'botafogo' },
+    { id: '03', name: 'corinthians' },
+    { id: '04', name: 'cruzeiro' },
+    { id: '05', name: 'flamengo' },
+    { id: '06', name: 'fluminense' },
+    { id: '07', name: 'gremio' },
+    { id: '08', name: 'internacional' },
+    { id: '09', name: 'palmeiras' },
+    { id: '10', name: 'santos' },
+    { id: '11', name: 'sao paulo' },
+    { id: '12', name: 'vasco' },
+];
+
+const inputOne = document.querySelector('.input-one');
+const listInputOne = document.querySelector('.list-input-one');
+const selectionInputOne = document.querySelector('.selection-input-one');
+
+inputOne.addEventListener('input', event => {
+    let valueInserted = event.target.value;
+    let valueInsertedFixed = valueInserted.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+    let filteredArray = [];
+    console.log(valueInsertedFixed);
+    if (valueInsertedFixed) {
+        console.log(clubs);
+        filteredArray = clubs.filter(club => {
+            let nameOfTheClub = club.name;
+            return nameOfTheClub.includes(valueInsertedFixed);
+        });
+        filteredArray = filteredArray.map(club => {
+            let idOfTheClub = club.id;
+            let nameOfTheClub = club.name;
+            return `<li id="${idOfTheClub}">${nameOfTheClub}</li>`;
+        });
+    }
+    autoCompleteInputOne(filteredArray);
+});
+
+function autoCompleteInputOne(clubs) {
+    if (clubs.length) {
+        listInputOne.innerHTML = clubs.join('');
+    } else {
+        listInputOne.innerHTML = '';
+    }
+}
+
+listInputOne.addEventListener('click', event => {
+    const element = event.target;
+    const elementId = element.id;
+    let clubSelected;
+    CLUBS_DATA.filter(club => {
+        if (club.id === elementId) clubSelected = club.fullName;
+    });
+    selectionInputOne.innerHTML = `${clubSelected}. Id: ${elementId}`;
+});

@@ -27,7 +27,17 @@ button {
     cursor: pointer;
 }
 
+button,
+input {
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
 .club {
     margin-bottom: 15px;
     border: 1px solid red;
 }
+
