@@ -216,23 +216,28 @@ function test() {
 // test();
 
 const clubs = [
-    { id: '01', name: 'atletico mineiro' },
-    { id: '02', name: 'botafogo' },
-    { id: '03', name: 'corinthians' },
-    { id: '04', name: 'cruzeiro' },
-    { id: '05', name: 'flamengo' },
-    { id: '06', name: 'fluminense' },
-    { id: '07', name: 'gremio' },
-    { id: '08', name: 'internacional' },
-    { id: '09', name: 'palmeiras' },
-    { id: '10', name: 'santos' },
-    { id: '11', name: 'sao paulo' },
-    { id: '12', name: 'vasco' },
+    { id: '01', name: 'atletico mineiro', nameFixed: 'Atlético Mineiro' },
+    { id: '02', name: 'botafogo', nameFixed: 'Botafogo' },
+    { id: '03', name: 'corinthians', nameFixed: 'Corinthians' },
+    { id: '04', name: 'cruzeiro', nameFixed: 'Cruzeiro' },
+    { id: '05', name: 'flamengo', nameFixed: 'Flamengo' },
+    { id: '06', name: 'fluminense', nameFixed: 'Fluminense' },
+    { id: '07', name: 'gremio', nameFixed: 'Grêmio' },
+    { id: '08', name: 'internacional', nameFixed: 'Internacional' },
+    { id: '09', name: 'palmeiras', nameFixed: 'Palmeiras' },
+    { id: '10', name: 'santos', nameFixed: 'Santos' },
+    { id: '11', name: 'sao paulo', nameFixed: 'São Paulo' },
+    { id: '12', name: 'vasco', nameFixed: 'Vasco' },
 ];
 
+const containerInputOne = document.querySelector('.container-input-one');
+const containerInputTwo = document.querySelector('.container-input-two');
 const inputOne = document.querySelector('.input-one');
+const inputTwo = document.querySelector('.input-two');
 const listInputOne = document.querySelector('.list-input-one');
+const listInputTwo = document.querySelector('.list-input-two');
 const selectionInputOne = document.querySelector('.selection-input-one');
+const selectionInputTwo = document.querySelector('.selection-input-two');
 
 inputOne.addEventListener('input', event => {
     let valueInserted = event.target.value;
@@ -247,7 +252,7 @@ inputOne.addEventListener('input', event => {
         });
         filteredArray = filteredArray.map(club => {
             let idOfTheClub = club.id;
-            let nameOfTheClub = club.name;
+            let nameOfTheClub = club.nameFixed;
             return `<li id="${idOfTheClub}">${nameOfTheClub}</li>`;
         });
     }
@@ -256,18 +261,64 @@ inputOne.addEventListener('input', event => {
 
 function autoCompleteInputOne(clubs) {
     if (clubs.length) {
+        inputOne.classList.add('input-one-adjust');
+        listInputOne.classList.add('list-input-one-adjust');
         listInputOne.innerHTML = clubs.join('');
     } else {
+        inputOne.classList.remove('input-one-adjust');
+        listInputOne.classList.remove('list-input-one-adjust');
         listInputOne.innerHTML = '';
     }
 }
 
 listInputOne.addEventListener('click', event => {
-    const element = event.target;
-    const elementId = element.id;
+    let element = event.target;
+    let elementId = element.id;
     let clubSelected;
     CLUBS_DATA.filter(club => {
         if (club.id === elementId) clubSelected = club.fullName;
     });
     selectionInputOne.innerHTML = `${clubSelected}. Id: ${elementId}`;
+    inputOne.value = '';
+    inputOne.classList.remove('input-one-adjust');
+    listInputOne.classList.remove('list-input-one-adjust');
+    listInputOne.innerHTML = '';
+    // containerInputOne.style.display = 'none';
+    // containerInputTwo.style.display = 'block';
+});
+
+inputTwo.addEventListener('input', event => {
+    let valueInserted = event.target.value;
+    let valueInsertedFixed = valueInserted.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+    let filteredArray = [];
+    if (valueInsertedFixed) {
+        filteredArray = clubs.filter(club => {
+            let nameOfTheClub = club.name;
+            return nameOfTheClub.includes(valueInsertedFixed);
+        });
+        filteredArray = filteredArray.map(club => {
+            let idOfTheClub = club.id;
+            let nameOfTheClub = club.nameFixed;
+            return `<li id="${idOfTheClub}">${nameOfTheClub}</li>`;
+        });
+    }
+    autoCompleteInputTwo(filteredArray);
+});
+
+function autoCompleteInputTwo(clubs) {
+    if (clubs.length) {
+        listInputTwo.innerHTML = clubs.join('');
+    } else {
+        listInputTwo.innerHTML = '';
+    }
+}
+
+listInputTwo.addEventListener('click', event => {
+    let element = event.target;
+    let elementId = element.id;
+    let clubSelected;
+    CLUBS_DATA.filter(club => {
+        if (club.id === elementId) clubSelected = club.fullName;
+    });
+    selectionInputTwo.innerHTML = `${clubSelected}. Id: ${elementId}`;
 });
