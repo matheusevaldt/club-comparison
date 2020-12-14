@@ -1,0 +1,220 @@
+{
+    "clubs": [
+        {
+            "id": "01",
+            "name": "Atlético Mineiro",
+            "fullName": "Clube Atlético Mineiro",
+            "autocompleteName": "atletico mineiro",
+            "state": "Minas Gerais",
+            "supporters": "5",
+            "logo": "logo_atletico-mineiro.png",
+            "titles": {
+                "titlesClubWorldCup": "0",
+                "titlesBrazilianChampionship": "1",
+                "titlesBrazilianCup": "1",
+                "titlesConmebolLibertadores": "1",
+                "titlesConmebolSudamericana": "0",
+                "titlesConmebolRecopa": "1",
+                "titlesStateChampionship": "45"
+            }
+        },
+        {
+            "id": "02",
+            "name": "Botafogo",
+            "fullName": "Botafogo de Futebol e Regatas",
+            "autocompleteName": "botafogo",
+            "state": "Rio de Janeiro",
+            "supporters": "2.8",
+            "logo": "logo_botafogo.png",
+            "titles": {
+                "titlesClubWorldCup": "0",
+                "titlesBrazilianChampionship": "2",
+                "titlesBrazilianCup": "0",
+                "titlesConmebolLibertadores": "0",
+                "titlesConmebolSudamericana": "0",
+                "titlesConmebolRecopa": "0",
+                "titlesStateChampionship": "21"
+            }
+        },
+        {
+            "id": "03",
+            "name": "Corinthians",
+            "fullName": "Sport Club Corinthians Paulista",
+            "autocompleteName": "corinthians",
+            "state": "São Paulo",
+            "supporters": "28.3",
+            "logo": "logo_corinthians.png",
+            "titles": {
+                "titlesClubWorldCup": "2",
+                "titlesBrazilianChampionship": "7",
+                "titlesBrazilianCup": "3",
+                "titlesConmebolLibertadores": "1",
+                "titlesConmebolSudamericana": "0",
+                "titlesConmebolRecopa": "1",
+                "titlesStateChampionship": "30"
+            }
+        },
+        {
+            "id": "04",
+            "name": "Cruzeiro",
+            "fullName": "Cruzeiro Esporte Clube",
+            "autocompleteName": "cruzeiro",
+            "state": "Minas Gerais",
+            "supporters": "7.2",
+            "logo": "logo_cruzeiro.png",
+            "titles": {
+                "titlesClubWorldCup": "0",
+                "titlesBrazilianChampionship": "4",
+                "titlesBrazilianCup": "6",
+                "titlesConmebolLibertadores": "2",
+                "titlesConmebolSudamericana": "0",
+                "titlesConmebolRecopa": "1",
+                "titlesStateChampionship": "36"
+            }
+        },
+        {
+            "id": "05",
+            "name": "Flamengo",
+            "fullName": "Clube de Regatas do Flamengo",
+            "autocompleteName": "flamengo",
+            "state": "Rio de Janeiro",
+            "supporters": "37,9",
+            "logo": "logo_flamengo.png",
+            "titles": {
+                "titlesClubWorldCup": "1",
+                "titlesBrazilianChampionship": "6",
+                "titlesBrazilianCup": "3",
+                "titlesConmebolLibertadores": "2",
+                "titlesConmebolSudamericana": "0",
+                "titlesConmebolRecopa": "1",
+                "titlesStateChampionship": "35"
+            }
+        },
+        {
+            "id": "06",
+            "name": "Fluminense",
+            "fullName": "Fluminense Football Club",
+            "autocompleteName": "fluminense",
+            "state": "Rio de Janeiro",
+            "supporters": "2.9",
+            "logo": "logo_fluminense.png",
+            "titles": {
+                "titlesClubWorldCup": "0",
+                "titlesBrazilianChampionship": "4",
+                "titlesBrazilianCup": "1",
+                "titlesConmebolLibertadores": "0",
+                "titlesConmebolSudamericana": "0",
+                "titlesConmebolRecopa": "0",
+                "titlesStateChampionship": "31"
+            }
+        },
+        {
+            "id": "07",
+            "name": "Grêmio",
+            "fullName": "Grêmio Foot-Ball Porto Alegrense",
+            "autocompleteName": "gremio",
+            "state": "Rio Grande do Sul",
+            "supporters": "8",
+            "logo": "logo_gremio.png",
+            "titles": {
+                "titlesClubWorldCup": "1",
+                "titlesBrazilianChampionship": "2",
+                "titlesBrazilianCup": "5",
+                "titlesConmebolLibertadores": "3",
+                "titlesConmebolSudamericana": "0",
+                "titlesConmebolRecopa": "2",
+                "titlesStateChampionship": "38"
+            }
+        },
+        {
+            "id": "08",
+            "name": "Internacional",
+            "fullName": "Sport Club Internacional",
+            "autocompleteName": "internacional",
+            "state": "Rio Grande do Sul",
+            "supporters": "6.3",
+            "logo": "logo_internacional.png",
+            "titles": {
+                "titlesClubWorldCup": "1",
+                "titlesBrazilianChampionship": "3",
+                "titlesBrazilianCup": "1",
+                "titlesConmebolLibertadores": "2",
+                "titlesConmebolSudamericana": "1",
+                "titlesConmebolRecopa": "2",
+                "titlesStateChampionship": "45"
+            }
+        },
+        {
+            "id": "09",
+            "name": "Palmeiras",
+            "fullName": "Sociedade Esportiva Palmeiras",
+            "autocompleteName": "palmeiras",
+            "state": "São Paulo",
+            "supporters": "13.1",
+            "logo": "logo_palmeiras.png",
+            "titles": {
+                "titlesClubWorldCup": "0",
+                "titlesBrazilianChampionship": "10",
+                "titlesBrazilianCup": "3",
+                "titlesConmebolLibertadores": "1",
+                "titlesConmebolSudamericana": "0",
+                "titlesConmebolRecopa": "0",
+                "titlesStateChampionship": "24"
+            }
+        },
+        {
+            "id": "10",
+            "name": "Santos",
+            "fullName": "Santos Futebol Clube",
+            "autocompleteName": "santos",
+            "state": "São Paulo",
+            "supporters": "5.5",
+            "logo": "logo_santos.png",
+            "titles": {
+                "titlesClubWorldCup": "2",
+                "titlesBrazilianChampionship": "8",
+                "titlesBrazilianCup": "1",
+                "titlesConmebolLibertadores": "3",
+                "titlesConmebolSudamericana": "0",
+                "titlesConmebolRecopa": "1",
+                "titlesStateChampionship": "22"
+            }
+        },
+        {
+            "id": "11",
+            "name": "São Paulo",
+            "fullName": "São Paulo Futebol Clube",
+            "autocompleteName": "sao paulo",
+            "state": "São Paulo",
+            "supporters": "17.1",
+            "logo": "logo_sao-paulo.png",
+            "titles": {
+                "titlesClubWorldCup": "3",
+                "titlesBrazilianChampionship": "6",
+                "titlesBrazilianCup": "0",
+                "titlesConmebolLibertadores": "3",
+                "titlesConmebolSudamericana": "1",
+                "titlesConmebolRecopa": "2",
+                "titlesStateChampionship": "21"
+            }
+        },
+        {
+            "id": "12",
+            "name": "Vasco",
+            "fullName": "Clube de Regatas Vasco da Gama",
+            "autocompleteName": "vasco",
+            "state": "Rio de Janeiro",
+            "supporters": "9.6",
+            "logo": "logo_vasco.png",
+            "titles": {
+                "titlesClubWorldCup": "0",
+                "titlesBrazilianChampionship": "4",
+                "titlesBrazilianCup": "1",
+                "titlesConmebolLibertadores": "1",
+                "titlesConmebolSudamericana": "0",
+                "titlesConmebolRecopa": "0",
+                "titlesStateChampionship": "24"
+            }
+        }
+    ]
+}

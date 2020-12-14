@@ -62,40 +62,39 @@ header p:last-of-type {
     margin-top: 20px;
 }
 
-.container-input-one {
-    /* background-color: rgb(233, 139, 139); */
+.first {
     text-align: center;
 }
 
-.input-one,
-.list-input-one {
+.input-club,
+.list-clubs {
     width: 200px;
     margin: 0 auto;
 }
 
-.input-one {
+.input-club {
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 4px;
     font-size: 0.95em;
     padding: 5px 10px;
 }
 
-.input-one-adjust {
+.input-club-adjust {
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
 }
 
-.list-input-one {
+.list-clubs {
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
     padding: 5px 0;
 }
 
-.list-input-one li {
+.list-clubs li {
     padding: 5px 0;
 }
 
-.list-input-one-adjust {
+.list-clubs-adjust {
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-top: none;
 }
@@ -103,11 +102,7 @@ header p:last-of-type {
 
 
 
-
-
-
-
-.container-input-two {
-    background-color: aqua;
+.button-choose-second-club,
+.button-compare-clubs {
     display: none;
 }
