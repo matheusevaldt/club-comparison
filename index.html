@@ -27,19 +27,23 @@
     <!-- Atlético Mineiro, Botafogo, Corinthians, Cruzeiro, Flamengo, Fluminense, Grêmio, Internacional, Palmeiras, Santos, São Paulo and Vasco. -->
 
     <div class="initial-container">
-        <div class="first">
-            <h1 class="">Choose the first club</h1>
-            <input type="text" class="input-club" placeholder="Insert club"> 
+
+        <div class="choose-container">
+            <div class="choose-instructions">
+                <p><span></span>INSTRUCTION<span></span></p>
+                <p>Choose two clubs and compare them to see who is the best.</p>
+            </div>
+            <h1 class="instruction-choose-club"></h1>
+            <input type="text" class="input-club" placeholder="Inform the first club"> 
             <ul class="list-clubs"></ul>
         </div>
-        <div class="second">
-            <h1>You have chosen <span class="name-selected-club"></span></h1>
-            <img class="image-selected-club">
-            <div>
-                <button class="button-choose-second-club">Click to choose the second club</button>
-                <button class="button-compare-clubs">Thats fine, compare clubs</button>
-            </div>
+
+        <div class="overview-container">
+            <p>You have chosen <span class="name-chosen-club"></span></p>
+            <img class="image-chosen-club">
+            <button class="button-overview"></button>
         </div>
+
     </div>
     
 </body>

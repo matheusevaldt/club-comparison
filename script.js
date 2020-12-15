@@ -1,13 +1,14 @@
 // Variables.
+const chooseContainer = document.querySelector('.choose-container');
+const overviewContainer = document.querySelector('.overview-container');
 const inputClub = document.querySelector('.input-club');
 const listClubs = document.querySelector('.list-clubs');
-const nameSelectedClub = document.querySelector('.name-selected-club');
-const imageSelectedClub = document.querySelector('.image-selected-club');
-const buttonChooseSecondClub = document.querySelector('.button-choose-second-club');
-const buttonCompareClubs = document.querySelector('.button-compare-clubs');
+const nameChosenClub = document.querySelector('.name-chosen-club');
+const imageChosenClub = document.querySelector('.image-chosen-club');
+const buttonOverview = document.querySelector('.button-overview');
 
 let CLUBS_DATA = [];
-let CLUBS_SELECTED = [];
+let CLUBS_CHOSEN = [];
 
 (function() {
     if (document.readyState === 'loading') {
@@ -55,24 +56,51 @@ listClubs.addEventListener('click', event => {
     let elementId = element.id;
     CLUBS_DATA.filter(club => {
         if (club.id === elementId) {
-            nameSelectedClub.innerHTML = club.name;
-            imageSelectedClub.src = `images/${club.logo}`;
-            imageSelectedClub.alt = club.fullName;
-            CLUBS_SELECTED.push(club.id);
-            if (CLUBS_SELECTED.length === 1) {
-                buttonChooseSecondClub.style.display = 'block';
-            } else {
-                buttonChooseSecondClub.style.display = 'none';
-                buttonCompareClubs.style.display = 'block';
-            }
+            nameChosenClub.innerHTML = club.name;
+            imageChosenClub.src = `images/${club.logo}`;
+            imageChosenClub.alt = club.fullName;
+            addChosenClub(club.id);
         }
     });
+    clearAutocomplete();
+    displayOnlyOverviewContainer();
+    setMessageButtonOverview();
+});
 
-
-    
-
+function clearAutocomplete() {
     inputClub.value = '';
     inputClub.classList.remove('input-club-adjust');
     listClubs.classList.remove('list-clubs-adjust');
     listClubs.innerHTML = '';
+}
+
+function addChosenClub(id) {
+    CLUBS_CHOSEN.push(id);
+}
+
+function displayOnlyChooseContainer() {
+    overviewContainer.style.display = 'none';
+    chooseContainer.style.display = 'block';
+}
+
+function displayOnlyOverviewContainer() {
+    chooseContainer.style.display = 'none';
+    overviewContainer.style.display = 'block';
+}
+
+buttonOverview.addEventListener('click', () => {
+    if (CLUBS_CHOSEN.length === 1) {
+        displayOnlyChooseContainer();
+        inputClub.placeholder = 'Inform the second club';
+    } else {
+        console.log('COMPARE CLUBS');
+    }
 });
+
+function setMessageButtonOverview() {
+    if (CLUBS_CHOSEN.length === 1) {
+        buttonOverview.innerHTML = 'Choose second club';
+    } else {
+        buttonOverview.innerHTML = 'Compare clubs';
+    }
+}
