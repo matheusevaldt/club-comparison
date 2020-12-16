@@ -6,9 +6,13 @@ const listClubs = document.querySelector('.list-clubs');
 const nameChosenClub = document.querySelector('.name-chosen-club');
 const imageChosenClub = document.querySelector('.image-chosen-club');
 const buttonOverview = document.querySelector('.button-overview');
+const messageOverview = document.querySelector('.message-overview');
+const buttonResetComparison = document.querySelector('.button-reset-comparison');
 
 let CLUBS_DATA = [];
 let CLUBS_CHOSEN = [];
+
+buttonResetComparison.addEventListener('click', resetComparison);
 
 (function() {
     if (document.readyState === 'loading') {
@@ -57,14 +61,13 @@ listClubs.addEventListener('click', event => {
     CLUBS_DATA.filter(club => {
         if (club.id === elementId) {
             nameChosenClub.innerHTML = club.name;
-            imageChosenClub.src = `images/${club.logo}`;
-            imageChosenClub.alt = club.fullName;
-            addChosenClub(club.id);
+            imageChosenClub.style.backgroundImage = `url(images/logos/${club.logo})`;
+            addChosenClub(club.id, club.name);
         }
     });
     clearAutocomplete();
     displayOnlyOverviewContainer();
-    setMessageButtonOverview();
+    setMessageOverview();
 });
 
 function clearAutocomplete() {
@@ -74,8 +77,9 @@ function clearAutocomplete() {
     listClubs.innerHTML = '';
 }
 
-function addChosenClub(id) {
-    CLUBS_CHOSEN.push(id);
+function addChosenClub(id, name) {
+    CLUBS_CHOSEN.push({id: id, name: name});
+    console.log(CLUBS_CHOSEN);
 }
 
 function displayOnlyChooseContainer() {
@@ -93,14 +97,46 @@ buttonOverview.addEventListener('click', () => {
         displayOnlyChooseContainer();
         inputClub.placeholder = 'Inform the second club';
     } else {
-        console.log('COMPARE CLUBS');
+        getClubsData(CLUBS_CHOSEN[0].id, CLUBS_CHOSEN[1].id);
     }
 });
 
-function setMessageButtonOverview() {
+function setMessageOverview() {
     if (CLUBS_CHOSEN.length === 1) {
-        buttonOverview.innerHTML = 'Choose second club';
+        messageOverview.innerHTML = 'Choose the second club.';
     } else {
-        buttonOverview.innerHTML = 'Compare clubs';
+        messageOverview.innerHTML = `Compare <span>${CLUBS_CHOSEN[0].name}</span> and <span>${CLUBS_CHOSEN[1].name}</span>.`;
     }
+}
+
+function resetComparison() {
+    CLUBS_CHOSEN = [];
+    displayOnlyChooseContainer();
+    clearAutocomplete();
+    inputClub.placeholder = 'Inform the first club';
+}
+
+window.addEventListener('click', () => {
+    let elementOnFocus = document.activeElement;
+    let isMobileDevice = window.navigator.userAgent.toLowerCase().includes('mobi');
+    if (isMobileDevice) {
+        if (elementOnFocus === inputClub) {
+            buttonResetComparison.style.display = 'none';
+        } else {
+            buttonResetComparison.style.display = 'block';
+        }
+    }
+});
+
+// build structure for data on both clubs
+
+function getClubsData(idFirstClub, idSecondClub) {
+    const firstClub = CLUBS_DATA.find(club => club.id === idFirstClub);
+    const secondClub = CLUBS_DATA.find(club => club.id === idSecondClub);
+    const clubs = [firstClub, secondClub];
+    compareClubs(clubs)
+}
+
+function compareClubs(clubs) {
+    console.log(clubs);
 }
