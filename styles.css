@@ -193,19 +193,62 @@ header p:last-of-type {
 
 /* Comparison container */
 
+.initial-container {
+    /* display: none; */
+}
+
 .comparison-container {
     display: none;
 }
 
 
 
+.comparison {
+    border: 1px solid;
+}
 
+.state-championship-row {
+    display: none;
+}
 
+.header-row, 
+.supporters-row,
+.brazilian-championship-row,
+.brazilian-cup-row,
+.conmebol-libertadores-row,
+.conmebol-sudamericana-row,
+.conmebol-recopa-row,
+.club-world-cup-row,
+.display-state-championship-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
 
+.header-row div,
+.supporters-row div,
+.brazilian-championship-row div,
+.brazilian-cup-row div,
+.conmebol-libertadores-row div,
+.conmebol-sudamericana-row div,
+.conmebol-recopa-row div,
+.club-world-cup-row div,
+.state-championship-row div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 
-
-
-
+.supporters-row div:first-of-type,
+.brazilian-championship-row div:first-of-type,
+.brazilian-cup-row div:first-of-type,
+.conmebol-libertadores-row div:first-of-type,
+.conmebol-sudamericana-row div:first-of-type,
+.conmebol-recopa-row div:first-of-type,
+.club-world-cup-row div:first-of-type,
+.state-championship-row div:first-of-type {
+    background-color: red;
+}
 
 
 
