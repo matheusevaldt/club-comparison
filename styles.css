@@ -199,59 +199,89 @@ header p:last-of-type {
 
 .comparison-container {
     display: none;
+    width: 92%;
+    margin: 20px auto;
+}
+
+.logo-comparison {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo-comparison img {
+    width: 48px;
+    height: 48px;
+}
+
+.logo-comparison div {
+    font-size: 1.2em;
+    font-weight: 700;
+    margin: 0 10px;
 }
 
 
 
-.comparison {
-    border: 1px solid;
+.comparison-container table {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-collapse: collapse;
+    width: 100%;
 }
 
-.state-championship-row {
+.header-comparison {
+    font-weight: 700;
+    font-size: 0.9em;
+    line-height: 18px;
+    color: #353535;
+}
+
+.header-comparison td:nth-of-type(2),
+.header-comparison td:nth-of-type(3) {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.state-championship-comparison {
     display: none;
 }
 
-.header-row, 
-.supporters-row,
-.brazilian-championship-row,
-.brazilian-cup-row,
-.conmebol-libertadores-row,
-.conmebol-sudamericana-row,
-.conmebol-recopa-row,
-.club-world-cup-row,
-.display-state-championship-row {
+.comparison-container table tr:not(.state-championship-comparison),
+.display-state-championship-comparison {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
 
-.header-row div,
-.supporters-row div,
-.brazilian-championship-row div,
-.brazilian-cup-row div,
-.conmebol-libertadores-row div,
-.conmebol-sudamericana-row div,
-.conmebol-recopa-row div,
-.club-world-cup-row div,
-.state-championship-row div {
+.comparison-container table tr:not(.header-comparison) {
+    font-size: 0.85em;
+}
+
+.comparison-container table td {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    padding: 10px 0;
 }
 
-.supporters-row div:first-of-type,
-.brazilian-championship-row div:first-of-type,
-.brazilian-cup-row div:first-of-type,
-.conmebol-libertadores-row div:first-of-type,
-.conmebol-sudamericana-row div:first-of-type,
-.conmebol-recopa-row div:first-of-type,
-.club-world-cup-row div:first-of-type,
-.state-championship-row div:first-of-type {
-    background-color: red;
+.comparison-container table td:first-of-type {
+    background-color: rgba(0, 0, 0, 0.05);
+    line-height: 20px;
 }
 
+.comparison-container table td:first-of-type {
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
+}
 
+.table-comparison-caption {
+    margin-top: 15px;
+    font-size: 0.85em;
+}
 
+.state-championship-caption {
+    display: none;
+}
 
 
 

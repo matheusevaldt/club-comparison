@@ -104,6 +104,9 @@ buttonOverview.addEventListener('click', () => {
         initialContainer.style.display = 'none';
         comparisonContainer.style.display = 'block';
         getClubsData(CLUBS_CHOSEN[0].id, CLUBS_CHOSEN[1].id);
+        // remove resetButton - put it on overview container
+        // simplify initial container
+        // change overview container - no more images
     }
 });
 
@@ -139,9 +142,11 @@ window.addEventListener('click', () => {
 
 
 // COMPARISON CONTAINER
-const stateChampionshipRow = document.querySelector('.state-championship-row');
+const stateChampionshipComparison = document.querySelector('.state-championship-comparison');
+const stateChampionshipCaption = document.querySelector('.state-championship-caption');
 
-const firstClubName = document.getElementById('first-club-name')
+const firstClubLogo = document.getElementById('first-club-logo');
+const firstClubHeader = document.getElementById('first-club-header')
 const firstClubSupporters = document.getElementById('first-club-supporters');
 const firstClubBrazilianChampionship = document.getElementById('first-club-brazilian-championship');
 const firstClubBrazilianCup = document.getElementById('first-club-brazilian-club');
@@ -151,7 +156,8 @@ const firstClubConmebolRecopa = document.getElementById('first-club-conmebol-rec
 const firstClubClubWorldCup = document.getElementById('first-club-club-world-cup');
 const firstClubStateChampionship = document.getElementById('first-club-state-championship');
 
-const secondClubName = document.getElementById('second-club-name');
+const secondClubLogo = document.getElementById('second-club-logo');
+const secondClubHeader = document.getElementById('second-club-header');
 const secondClubSupporters = document.getElementById('second-club-supporters');
 const secondClubBrazilianChampionship = document.getElementById('second-club-brazilian-championship');
 const secondClubBrazilianCup = document.getElementById('second-club-brazilian-club');
@@ -165,13 +171,17 @@ function getClubsData(idFirstClub, idSecondClub) {
     const firstClub = CLUBS_DATA.find(club => club.id === idFirstClub);
     const secondClub = CLUBS_DATA.find(club => club.id === idSecondClub);
     const clubs = [firstClub, secondClub];
-    assignClubsData(clubs)
+    assignClubsData(clubs);
+    compareClubsData(clubs);
 }
 
 function assignClubsData(clubs) {
 
-    firstClubName.innerHTML = clubs[0].name;
-    secondClubName.innerHTML = clubs[1].name;
+    firstClubLogo.src = `images/logos/${clubs[0].logo}`;
+    secondClubLogo.src = `images/logos/${clubs[1].logo}`;
+
+    firstClubHeader.innerHTML = clubs[0].name;
+    secondClubHeader.innerHTML = clubs[1].name;
 
     firstClubSupporters.innerHTML = `${clubs[0].supporters} million`;
     secondClubSupporters.innerHTML = `${clubs[1].supporters} million`;
@@ -195,11 +205,66 @@ function assignClubsData(clubs) {
     secondClubClubWorldCup.innerHTML = clubs[1].titles.titlesClubWorldCup;
 
     if (clubs[0].state === clubs[1].state) {
-        stateChampionshipRow.classList.add('display-state-championship-row');
+        stateChampionshipComparison.classList.add('display-state-championship-comparison');
         firstClubStateChampionship.innerHTML = clubs[0].titles.titlesStateChampionship;
         secondClubStateChampionship.innerHTML = clubs[1].titles.titlesStateChampionship;
+        stateChampionshipCaption.style.display = 'block';
     } else {
-        stateChampionshipRow.classList.remove('display-state-championship-row');
+        stateChampionshipComparison.classList.remove('display-state-championship-comparison');
+    }
+
+}
+
+function compareClubsData(clubs) {
+
+    if (Number(clubs[0].supporters) > Number(clubs[1].supporters)) {
+        firstClubSupporters.style.backgroundColor = 'rgba(239, 176, 140, 0.5)'
+    } else {
+        secondClubSupporters.style.backgroundColor = 'rgba(239, 176, 140, 0.5)';
+    }
+
+    if (Number(clubs[0].titles.titlesBrazilianChampionship) > Number(clubs[1].titles.titlesBrazilianChampionship)) {
+        firstClubBrazilianChampionship.style.backgroundColor = 'rgba(239, 176, 140, 0.5)';
+    } else if (Number(clubs[0].titles.titlesBrazilianChampionship) < Number(clubs[1].titles.titlesBrazilianChampionship)) {
+        secondClubBrazilianChampionship.style.backgroundColor = 'rgba(239, 176, 140, 0.5)';
+    }
+
+    if (Number(clubs[0].titles.titlesBrazilianCup) > Number(clubs[1].titles.titlesBrazilianCup)) {
+        firstClubBrazilianCup.style.backgroundColor = 'rgba(239, 176, 140, 0.5)';
+    } else if (Number(clubs[0].titles.titlesBrazilianCup) < Number(clubs[1].titles.titlesBrazilianCup)) {
+        secondClubBrazilianCup.style.backgroundColor  = 'rgba(239, 176, 140, 0.5)';
+    }
+
+    if (Number(clubs[0].titles.titlesConmebolLibertadores) > Number(clubs[1].titles.titlesConmebolLibertadores)) {
+        firstClubConmebolLibertadores.style.backgroundColor = 'rgba(239, 176, 140, 0.5)';
+    } else if (Number(clubs[0].titles.titlesConmebolLibertadores) < Number(clubs[1].titles.titlesConmebolLibertadores)) {
+        secondClubConmebolLibertadores.style.backgroundColor  = 'rgba(239, 176, 140, 0.5)';
+    }
+
+    if (Number(clubs[0].titles.titlesConmebolSudamericana) > Number(clubs[1].titles.titlesConmebolSudamericana)) {
+        firstClubConmebolSudamericana.style.backgroundColor = 'rgba(239, 176, 140, 0.5)';
+    } else if (Number(clubs[0].titles.titlesConmebolSudamericana) < Number(clubs[1].titles.titlesConmebolSudamericana)) {
+        secondClubConmebolSudamericana.style.backgroundColor  = 'rgba(239, 176, 140, 0.5)';
+    }
+
+    if (Number(clubs[0].titles.titlesConmebolRecopa) > Number(clubs[1].titles.titlesConmebolRecopa)) {
+        firstClubConmebolRecopa.style.backgroundColor = 'rgba(239, 176, 140, 0.5)';
+    } else if (Number(clubs[0].titles.titlesConmebolRecopa) < Number(clubs[1].titles.titlesConmebolRecopa)) {
+        secondClubConmebolRecopa.style.backgroundColor  = 'rgba(239, 176, 140, 0.5)';
+    }
+
+    if (Number(clubs[0].titles.titlesClubWorldCup) > Number(clubs[1].titles.titlesClubWorldCup)) {
+        firstClubClubWorldCup.style.backgroundColor = 'rgba(239, 176, 140, 0.5)';
+    } else if (Number(clubs[0].titles.titlesClubWorldCup) < Number(clubs[1].titles.titlesClubWorldCup)) {
+        secondClubClubWorldCup.style.backgroundColor  = 'rgba(239, 176, 140, 0.5)';
+    }
+
+    if (clubs[0].state === clubs[1].state) {
+        if (Number(clubs[0].titles.titlesStateChampionship) > Number(clubs[1].titles.titlesStateChampionship)) {
+            firstClubStateChampionship.style.backgroundColor = 'rgba(239, 176, 140, 0.5)';
+        } else if (Number(clubs[0].titles.titlesStateChampionship) < Number(clubs[1].titles.titlesStateChampionship)) {
+            secondClubStateChampionship.style.backgroundColor = 'rgba(239, 176, 140, 0.5)';
+        }
     }
 
 }
