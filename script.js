@@ -1,22 +1,32 @@
 // Variables.
 const initialContainer = document.querySelector('.initial-container');
 
-const chooseContainer = document.querySelector('.choose-container');
-const overviewContainer = document.querySelector('.overview-container');
+const instructionsContainer = document.querySelector('.instructions-container');
+const inputContainer = document.querySelector('.input-container');
+const actionsContainer = document.querySelector('.actions-container');
+
+
 const inputClub = document.querySelector('.input-club');
 const listClubs = document.querySelector('.list-clubs');
-const nameChosenClub = document.querySelector('.name-chosen-club');
-const imageChosenClub = document.querySelector('.image-chosen-club');
-const buttonOverview = document.querySelector('.button-overview');
-const messageOverview = document.querySelector('.message-overview');
-const buttonResetComparison = document.querySelector('.button-reset-comparison');
+
+
+const currentInstruction = document.querySelector('.current-instruction');
+const summaryChoices = document.querySelector('.summary-choices');
+
+const buttonStartAgain = document.querySelector('.button-start-again');
+const buttonChooseSecondClub = document.querySelector('.button-choose-second-club');
+const buttonCompareClubs = document.querySelector('.button-compare-clubs');
+
+
 
 const comparisonContainer = document.querySelector('.comparison-container');
 
 let CLUBS_DATA = [];
 let CLUBS_CHOSEN = [];
 
-buttonResetComparison.addEventListener('click', resetComparison);
+buttonStartAgain.addEventListener('click', startAgain);
+buttonChooseSecondClub.addEventListener('click', chooseSecondClub);
+buttonCompareClubs.addEventListener('click', compareClubs);
 
 (function() {
     if (document.readyState === 'loading') {
@@ -59,87 +69,108 @@ function autocompleteInputClub(clubs) {
     }
 }
 
+// After the user selects a club to compare.
 listClubs.addEventListener('click', event => {
     let element = event.target;
     let elementId = element.id;
     CLUBS_DATA.filter(club => {
-        if (club.id === elementId) {
-            nameChosenClub.innerHTML = club.name;
-            imageChosenClub.style.backgroundImage = `url(images/logos/${club.logo})`;
-            addChosenClub(club.id, club.name);
-        }
+        if (club.id === elementId) addChosenClub(club.id, club.name);
     });
-    clearAutocomplete();
-    displayOnlyOverviewContainer();
-    setMessageOverview();
+    displayOverview();
 });
-
-function clearAutocomplete() {
-    inputClub.value = '';
-    inputClub.classList.remove('input-club-adjust');
-    listClubs.classList.remove('list-clubs-adjust');
-    listClubs.innerHTML = '';
-}
 
 function addChosenClub(id, name) {
     CLUBS_CHOSEN.push({id: id, name: name});
     console.log(CLUBS_CHOSEN);
 }
 
-function displayOnlyChooseContainer() {
-    overviewContainer.style.display = 'none';
-    chooseContainer.style.display = 'block';
+function displayOverview() {
+    clearAutocompleteList();
+    hideInstructionsContainer();
+    hideInputContainer();
+    displaySummaryChoices();
+    displayActionsContainer();
 }
 
-function displayOnlyOverviewContainer() {
-    chooseContainer.style.display = 'none';
-    overviewContainer.style.display = 'block';
+function clearAutocompleteList() {
+    inputClub.value = '';
+    listClubs.innerHTML = '';
+    inputClub.classList.remove('input-club-adjust');
+    listClubs.classList.remove('list-clubs-adjust');   
 }
 
-buttonOverview.addEventListener('click', () => {
+function hideInstructionsContainer() {
+    instructionsContainer.style.display = 'none';
+}
+
+function hideInputContainer() {
+    inputContainer.style.display = 'none';
+}
+
+function displaySummaryChoices() {
+    summaryChoices.style.display = 'block';
     if (CLUBS_CHOSEN.length === 1) {
-        displayOnlyChooseContainer();
-        inputClub.placeholder = 'Inform the second club';
+        summaryChoices.innerHTML = `You have chosen <strong>${CLUBS_CHOSEN[0].name}</strong> as your first club.`;
     } else {
-        initialContainer.style.display = 'none';
-        comparisonContainer.style.display = 'block';
-        getClubsData(CLUBS_CHOSEN[0].id, CLUBS_CHOSEN[1].id);
-        // remove resetButton - put it on overview container
-        // simplify initial container
-        // change overview container - no more images
-    }
-});
-
-function setMessageOverview() {
-    if (CLUBS_CHOSEN.length === 1) {
-        messageOverview.innerHTML = 'Choose the second club.';
-    } else {
-        messageOverview.innerHTML = `Compare <span>${CLUBS_CHOSEN[0].name}</span> and <span>${CLUBS_CHOSEN[1].name}</span>.`;
+        summaryChoices.innerHTML = `You have chosen <strong>${CLUBS_CHOSEN[0].name}</strong> as your first club 
+                                    and <strong>${CLUBS_CHOSEN[1].name}</strong> as your second club.`;
     }
 }
 
-function resetComparison() {
+function displayActionsContainer() {
+    actionsContainer.style.display = 'flex';
+    if (CLUBS_CHOSEN.length === 1) {
+        buttonStartAgain.style.display = 'block';
+        buttonChooseSecondClub.style.display = 'block';
+        buttonCompareClubs.style.display = 'none';
+    } else {
+        buttonStartAgain.style.display = 'block';
+        buttonChooseSecondClub.style.display = 'none';
+        buttonCompareClubs.style.display = 'block';
+    }
+}
+
+function chooseSecondClub() {
+    hideSummaryChoices();
+    hideActionsContainer();
+    displayInstructionsContainer('second');
+    displayInputContainer('second');
+}
+
+function hideSummaryChoices() {
+    summaryChoices.style.display = 'none';
+}
+
+function hideActionsContainer() {
+    actionsContainer.style.display = 'none';
+    buttonStartAgain.style.display = 'none';
+    buttonChooseSecondClub.style.display = 'none';
+    buttonCompareClubs.style.display = 'none';
+}
+
+function displayInstructionsContainer(phase) {
+    instructionsContainer.style.display = 'block';
+    currentInstruction.innerHTML = `Choose the ${phase} club that you would like to compare.`;
+}
+
+function displayInputContainer(phase) {
+    inputContainer.style.display = 'block';
+    inputClub.placeholder = `Inform the ${phase} club`;
+}
+
+function startAgain() {
     CLUBS_CHOSEN = [];
-    displayOnlyChooseContainer();
-    clearAutocomplete();
-    inputClub.placeholder = 'Inform the first club';
+    hideSummaryChoices();
+    hideActionsContainer();
+    displayInstructionsContainer('first');
+    displayInputContainer('first');
 }
 
-window.addEventListener('click', () => {
-    let elementOnFocus = document.activeElement;
-    let isMobileDevice = window.navigator.userAgent.toLowerCase().includes('mobi');
-    if (isMobileDevice) {
-        if (elementOnFocus === inputClub) {
-            buttonResetComparison.style.display = 'none';
-        } else {
-            buttonResetComparison.style.display = 'block';
-        }
-    }
-});
-
-
-
-
+function compareClubs() {
+    getClubsData(CLUBS_CHOSEN[0].id, CLUBS_CHOSEN[1].id);
+    initialContainer.style.display = 'none';
+    comparisonContainer.style.display = 'block';
+}
 
 // COMPARISON CONTAINER
 const stateChampionshipComparison = document.querySelector('.state-championship-comparison');

@@ -28,25 +28,29 @@
 
     <div class="initial-container">
 
-        <div class="choose-container">
-            <div class="choose-instructions">
-                <p><span></span>INSTRUCTION<span></span></p>
-                <p>Choose two clubs and compare them to see who is the best.</p>
-            </div>
-            <h1 class="instruction-choose-club"></h1>
+        <div class="instructions-container">
+            <p>INSTRUCTIONS</p>
+            <p class="current-instruction">Choose the first club that you would like to compare.</p>
+        </div>
+
+        <p class="summary-choices"></p>
+
+        <div class="input-container">
             <input type="text" class="input-club" placeholder="Inform the first club"> 
             <ul class="list-clubs"></ul>
         </div>
 
-        <div class="overview-container">
-            <p>You have chosen <span class="name-chosen-club"></span>.</p>
-            <div class="image-chosen-club"></div>
-            <p class="message-overview"></p>
-            <button class="button-overview">&rarr;</button>
+        <div class="actions-container">
+            <button class="button-start-again">START AGAIN</button>
+            <button class="button-choose-second-club">CHOOSE SECOND CLUB</button>
+            <button class="button-compare-clubs">COMPARE CLUBS</button>
         </div>
 
     </div>
 
+
+
+    
     <div class="comparison-container">
         
         <div class="logo-comparison">
@@ -109,8 +113,6 @@
         </div>
 
     </div>
-    
-    <button class="button-reset-comparison"><img src="images/reload.png"></button>
 
 </body>
 </html>
