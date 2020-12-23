@@ -1,25 +1,19 @@
 // Variables.
 const initialContainer = document.querySelector('.initial-container');
-
 const instructionsContainer = document.querySelector('.instructions-container');
-const inputContainer = document.querySelector('.input-container');
-const actionsContainer = document.querySelector('.actions-container');
-
-
-const inputClub = document.querySelector('.input-club');
-const listClubs = document.querySelector('.list-clubs');
-
-
 const currentInstruction = document.querySelector('.current-instruction');
 const summaryChoices = document.querySelector('.summary-choices');
-
+const inputContainer = document.querySelector('.input-container');
+const inputClub = document.querySelector('.input-club');
+const listClubs = document.querySelector('.list-clubs');
+const actionsContainer = document.querySelector('.actions-container');
 const buttonStartAgain = document.querySelector('.button-start-again');
 const buttonChooseSecondClub = document.querySelector('.button-choose-second-club');
 const buttonCompareClubs = document.querySelector('.button-compare-clubs');
-
-
-
 const comparisonContainer = document.querySelector('.comparison-container');
+const stateChampionshipComparison = document.querySelector('.state-championship-comparison');
+const stateChampionshipCaption = document.querySelector('.state-championship-caption');
+const buttonCompareOtherClubs = document.querySelector('.button-compare-other-clubs');
 
 let CLUBS_DATA = [];
 let CLUBS_CHOSEN = [];
@@ -27,6 +21,7 @@ let CLUBS_CHOSEN = [];
 buttonStartAgain.addEventListener('click', startAgain);
 buttonChooseSecondClub.addEventListener('click', chooseSecondClub);
 buttonCompareClubs.addEventListener('click', compareClubs);
+buttonCompareOtherClubs.addEventListener('click', compareOtherClubs);
 
 (function() {
     if (document.readyState === 'loading') {
@@ -46,7 +41,6 @@ inputClub.addEventListener('input', event => {
     let valueInserted = event.target.value;
     let valueInsertedFixed = valueInserted.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
     let filteredArray = [];
-    console.log(valueInsertedFixed);
     if (valueInsertedFixed) {
         filteredArray = CLUBS_DATA.filter(club => {
             let nameOfTheClub = club.autocompleteName;
@@ -172,128 +166,76 @@ function compareClubs() {
     comparisonContainer.style.display = 'block';
 }
 
-// COMPARISON CONTAINER
-const stateChampionshipComparison = document.querySelector('.state-championship-comparison');
-const stateChampionshipCaption = document.querySelector('.state-championship-caption');
-
-const firstClubName = document.getElementById('first-club-name');
-const firstClubLogo = document.querySelector('.first-club-logo');
-const firstClubSupporters = document.getElementById('first-club-supporters');
-const firstClubBrazilianChampionship = document.getElementById('first-club-brazilian-championship');
-const firstClubBrazilianCup = document.getElementById('first-club-brazilian-cup');
-const firstClubLibertadores = document.getElementById('first-club-libertadores');
-const firstClubSudamericana = document.getElementById('first-club-sudamericana');
-const firstClubRecopa = document.getElementById('first-club-recopa');
-const firstClubClubWorldCup = document.getElementById('first-club-club-world-cup');
-const firstClubStateChampionship = document.getElementById('first-club-state-championship');
-
-const secondClubName = document.getElementById('second-club-name')
-const secondClubLogo = document.querySelector('.second-club-logo');
-const secondClubSupporters = document.getElementById('second-club-supporters');
-const secondClubBrazilianChampionship = document.getElementById('second-club-brazilian-championship');
-const secondClubBrazilianCup = document.getElementById('second-club-brazilian-cup');
-const secondClubLibertadores = document.getElementById('second-club-libertadores');
-const secondClubSudamericana = document.getElementById('second-club-sudamericana');
-const secondClubRecopa = document.getElementById('second-club-recopa');
-const secondClubClubWorldCup = document.getElementById('second-club-club-world-cup');
-const secondClubStateChampionship = document.getElementById('second-club-state-championship');
-
 function getClubsData(idFirstClub, idSecondClub) {
     const firstClub = CLUBS_DATA.find(club => club.id === idFirstClub);
     const secondClub = CLUBS_DATA.find(club => club.id === idSecondClub);
     const clubs = [firstClub, secondClub];
     assignClubsData(clubs);
-    // compareClubsData(clubs);
 }
 
 function assignClubsData(clubs) {
-
-    firstClubName.innerHTML = clubs[0].name;
-    secondClubName.innerHTML = clubs[1].name;
-
-    firstClubLogo.src = `images/logos/${clubs[0].logo}`;
-    secondClubLogo.src = `images/logos/${clubs[1].logo}`;
-
-    firstClubSupporters.innerHTML = `${clubs[0].supporters} mi`;
-    secondClubSupporters.innerHTML = `${clubs[1].supporters} mi`;
-
-    firstClubBrazilianChampionship.innerHTML = clubs[0].titles.titlesBrazilianChampionship;
-    secondClubBrazilianChampionship.innerHTML = clubs[1].titles.titlesBrazilianChampionship;
-
-    firstClubBrazilianCup.innerHTML = clubs[0].titles.titlesBrazilianCup;
-    secondClubBrazilianCup.innerHTML = clubs[1].titles.titlesBrazilianCup;
-
-    firstClubLibertadores.innerHTML = clubs[0].titles.titlesConmebolLibertadores;
-    secondClubLibertadores.innerHTML = clubs[1].titles.titlesConmebolLibertadores;
-
-    firstClubSudamericana.innerHTML = clubs[0].titles.titlesConmebolSudamericana;
-    secondClubSudamericana.innerHTML = clubs[1].titles.titlesConmebolSudamericana;
-
-    firstClubRecopa.innerHTML = clubs[0].titles.titlesConmebolRecopa;
-    secondClubRecopa.innerHTML = clubs[1].titles.titlesConmebolRecopa;
-
-    firstClubClubWorldCup.innerHTML = clubs[0].titles.titlesClubWorldCup;
-    secondClubClubWorldCup.innerHTML = clubs[1].titles.titlesClubWorldCup;
-
+    // Assigning the name of both clubs.
+    document.getElementById('first-club-name').innerHTML = clubs[0].name;
+    document.getElementById('second-club-name').innerHTML = clubs[1].name;
+    // Assigning the logos of both clubs.
+    document.querySelector('.first-club-logo').src = `images/logos/${clubs[0].logo}`;
+    document.querySelector('.second-club-logo').src = `images/logos/${clubs[1].logo}`;
+    // Assigning the amount of supporters for both clubs.
+    document.getElementById('first-club-supporters').innerHTML = `${clubs[0].supporters} mi`;
+    document.getElementById('second-club-supporters').innerHTML = `${clubs[1].supporters} mi`;
+    // Assigning the amount of brazilian championship titles for both clubs.
+    document.getElementById('first-club-brazilian-championship').innerHTML = clubs[0].titles.titlesBrazilianChampionship;
+    document.getElementById('second-club-brazilian-championship').innerHTML = clubs[1].titles.titlesBrazilianChampionship;
+    // Assigning the amount of brazilian cup titles for both clubs.
+    document.getElementById('first-club-brazilian-cup').innerHTML = clubs[0].titles.titlesBrazilianCup;
+    document.getElementById('second-club-brazilian-cup').innerHTML = clubs[1].titles.titlesBrazilianCup;
+    // Assigning the amount of libertadores titles for both clubs.
+    document.getElementById('first-club-libertadores').innerHTML = clubs[0].titles.titlesConmebolLibertadores;
+    document.getElementById('second-club-libertadores').innerHTML = clubs[1].titles.titlesConmebolLibertadores;
+    // Assigning the amount of sudamericana titles for both clubs.
+    document.getElementById('first-club-sudamericana').innerHTML = clubs[0].titles.titlesConmebolSudamericana;
+    document.getElementById('second-club-sudamericana').innerHTML = clubs[1].titles.titlesConmebolSudamericana;
+    // Assigning the amount of recopa titles for both clubs.
+    document.getElementById('first-club-recopa').innerHTML = clubs[0].titles.titlesConmebolRecopa;
+    document.getElementById('second-club-recopa').innerHTML = clubs[1].titles.titlesConmebolRecopa;
+    // Assigning the amount of club world cup titles for both clubs.
+    document.getElementById('first-club-club-world-cup').innerHTML = clubs[0].titles.titlesClubWorldCup;
+    document.getElementById('second-club-club-world-cup').innerHTML = clubs[1].titles.titlesClubWorldCup;
+    // If both clubs are from the same state, assign and display the amount of state championship titles for both clubs.
     if (clubs[0].state === clubs[1].state) {
         stateChampionshipComparison.style.display = 'grid';
         stateChampionshipCaption.style.display = 'block';
-        firstClubStateChampionship.innerHTML = clubs[0].titles.titlesStateChampionship;
-        secondClubStateChampionship.innerHTML = clubs[1].titles.titlesStateChampionship;
+        document.getElementById('first-club-state-championship').innerHTML = clubs[0].titles.titlesStateChampionship;
+        document.getElementById('second-club-state-championship').innerHTML = clubs[1].titles.titlesStateChampionship;
+    } else {
+        stateChampionshipComparison.style.display = 'none';
+        stateChampionshipCaption.style.display = 'none';
     }
-
 }
 
-// function compareClubsData(clubs) {
+function compareOtherClubs() {
+    startAgain();
+    comparisonContainer.style.display = 'none';
+    initialContainer.style.display = 'block';
+}
 
-//     if (Number(clubs[0].supporters) > Number(clubs[1].supporters)) {
-//         firstClubSupporters.style.backgroundColor = 'rgba(239, 176, 140, 0.5)'
-//     } else {
-//         secondClubSupporters.style.backgroundColor = 'rgba(239, 176, 140, 0.5)';
-//     }
-
-//     if (Number(clubs[0].titles.titlesBrazilianChampionship) > Number(clubs[1].titles.titlesBrazilianChampionship)) {
-//         firstClubBrazilianChampionship.style.backgroundColor = 'rgba(239, 176, 140, 0.5)';
-//     } else if (Number(clubs[0].titles.titlesBrazilianChampionship) < Number(clubs[1].titles.titlesBrazilianChampionship)) {
-//         secondClubBrazilianChampionship.style.backgroundColor = 'rgba(239, 176, 140, 0.5)';
-//     }
-
-//     if (Number(clubs[0].titles.titlesBrazilianCup) > Number(clubs[1].titles.titlesBrazilianCup)) {
-//         firstClubBrazilianCup.style.backgroundColor = 'rgba(239, 176, 140, 0.5)';
-//     } else if (Number(clubs[0].titles.titlesBrazilianCup) < Number(clubs[1].titles.titlesBrazilianCup)) {
-//         secondClubBrazilianCup.style.backgroundColor  = 'rgba(239, 176, 140, 0.5)';
-//     }
-
-//     if (Number(clubs[0].titles.titlesConmebolLibertadores) > Number(clubs[1].titles.titlesConmebolLibertadores)) {
-//         firstClubConmebolLibertadores.style.backgroundColor = 'rgba(239, 176, 140, 0.5)';
-//     } else if (Number(clubs[0].titles.titlesConmebolLibertadores) < Number(clubs[1].titles.titlesConmebolLibertadores)) {
-//         secondClubConmebolLibertadores.style.backgroundColor  = 'rgba(239, 176, 140, 0.5)';
-//     }
-
-//     if (Number(clubs[0].titles.titlesConmebolSudamericana) > Number(clubs[1].titles.titlesConmebolSudamericana)) {
-//         firstClubConmebolSudamericana.style.backgroundColor = 'rgba(239, 176, 140, 0.5)';
-//     } else if (Number(clubs[0].titles.titlesConmebolSudamericana) < Number(clubs[1].titles.titlesConmebolSudamericana)) {
-//         secondClubConmebolSudamericana.style.backgroundColor  = 'rgba(239, 176, 140, 0.5)';
-//     }
-
-//     if (Number(clubs[0].titles.titlesConmebolRecopa) > Number(clubs[1].titles.titlesConmebolRecopa)) {
-//         firstClubConmebolRecopa.style.backgroundColor = 'rgba(239, 176, 140, 0.5)';
-//     } else if (Number(clubs[0].titles.titlesConmebolRecopa) < Number(clubs[1].titles.titlesConmebolRecopa)) {
-//         secondClubConmebolRecopa.style.backgroundColor  = 'rgba(239, 176, 140, 0.5)';
-//     }
-
-//     if (Number(clubs[0].titles.titlesClubWorldCup) > Number(clubs[1].titles.titlesClubWorldCup)) {
-//         firstClubClubWorldCup.style.backgroundColor = 'rgba(239, 176, 140, 0.5)';
-//     } else if (Number(clubs[0].titles.titlesClubWorldCup) < Number(clubs[1].titles.titlesClubWorldCup)) {
-//         secondClubClubWorldCup.style.backgroundColor  = 'rgba(239, 176, 140, 0.5)';
-//     }
-
-//     if (clubs[0].state === clubs[1].state) {
-//         if (Number(clubs[0].titles.titlesStateChampionship) > Number(clubs[1].titles.titlesStateChampionship)) {
-//             firstClubStateChampionship.style.backgroundColor = 'rgba(239, 176, 140, 0.5)';
-//         } else if (Number(clubs[0].titles.titlesStateChampionship) < Number(clubs[1].titles.titlesStateChampionship)) {
-//             secondClubStateChampionship.style.backgroundColor = 'rgba(239, 176, 140, 0.5)';
-//         }
-//     }
-
-// }
+// const firstClubName = document.getElementById('first-club-name');
+// const firstClubLogo = document.querySelector('.first-club-logo');
+// const firstClubSupporters = document.getElementById('first-club-supporters');
+// const firstClubBrazilianChampionship = document.getElementById('first-club-brazilian-championship');
+// const firstClubBrazilianCup = document.getElementById('first-club-brazilian-cup');
+// const firstClubLibertadores = document.getElementById('first-club-libertadores');
+// const firstClubSudamericana = document.getElementById('first-club-sudamericana');
+// const firstClubRecopa = document.getElementById('first-club-recopa');
+// const firstClubClubWorldCup = document.getElementById('first-club-club-world-cup');
+// const firstClubStateChampionship = document.getElementById('first-club-state-championship');
+// const secondClubName = document.getElementById('second-club-name')
+// const secondClubLogo = document.querySelector('.second-club-logo');
+// const secondClubSupporters = document.getElementById('second-club-supporters');
+// const secondClubBrazilianChampionship = document.getElementById('second-club-brazilian-championship');
+// const secondClubBrazilianCup = document.getElementById('second-club-brazilian-cup');
+// const secondClubLibertadores = document.getElementById('second-club-libertadores');
+// const secondClubSudamericana = document.getElementById('second-club-sudamericana');
+// const secondClubRecopa = document.getElementById('second-club-recopa');
+// const secondClubClubWorldCup = document.getElementById('second-club-club-world-cup');
+// const secondClubStateChampionship = document.getElementById('second-club-state-championship');

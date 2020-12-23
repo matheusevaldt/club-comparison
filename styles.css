@@ -62,12 +62,9 @@ header p:last-of-type {
     /* border: 1px solid red; */
 }
 
-.choose-container {
-    text-align: center;
-}
-
 .instructions-container {
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .instructions-container p:first-of-type {
@@ -171,46 +168,6 @@ header p:last-of-type {
 
 
 
-/* 
-.image-chosen-club {
-    position: relative;
-    width: 180px;
-    height: 180px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin: 20px auto 25px auto;
-}
-
-.image-chosen-club::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    background: inherit;
-    filter: blur(15px);
-    z-index: -1;
-} */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -231,7 +188,7 @@ header p:last-of-type {
 .comparison-container {
     display: none;
     width: 92%;
-    margin: 20px auto;
+    margin: 20px auto 0px auto;
 }
 
 
@@ -321,5 +278,19 @@ header p:last-of-type {
     display: none;
 }
 
+.button-compare-other-clubs {
+    display: block;
+    margin: 25px auto 30px auto;
+    border: none;
+    background-color: transparent;
+    font-size: 0.85em;
+    font-weight: 700;
+    color: #4e4e4e;
+    padding: 0 10px;
+    transition: color 0.3s linear;
+}
 
-
+.actions-container button:hover,
+.actions-container button:focus {
+    color: #fc8621;
+}
