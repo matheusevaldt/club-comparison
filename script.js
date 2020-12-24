@@ -1,4 +1,7 @@
 // Variables.
+const buttonDisplayAvailableClubs = document.querySelector('.button-display-available-clubs');
+const listOfAvailableClubs = document.querySelector('.list-of-available-clubs');
+const buttonHideAvailableClubs = document.querySelector('.button-hide-available-clubs');
 const initialContainer = document.querySelector('.initial-container');
 const instructionsContainer = document.querySelector('.instructions-container');
 const currentInstruction = document.querySelector('.current-instruction');
@@ -18,6 +21,8 @@ const buttonCompareOtherClubs = document.querySelector('.button-compare-other-cl
 let CLUBS_DATA = [];
 let CLUBS_CHOSEN = [];
 
+buttonDisplayAvailableClubs.addEventListener('click', displayAvailableClubs);
+buttonHideAvailableClubs.addEventListener('click', hideAvailableClubs);
 buttonStartAgain.addEventListener('click', startAgain);
 buttonChooseSecondClub.addEventListener('click', chooseSecondClub);
 buttonCompareClubs.addEventListener('click', compareClubs);
@@ -217,6 +222,15 @@ function compareOtherClubs() {
     startAgain();
     comparisonContainer.style.display = 'none';
     initialContainer.style.display = 'block';
+}
+
+function displayAvailableClubs() {
+    listOfAvailableClubs.style.display = 'block';
+    if (screen.width > 1200) buttonHideAvailableClubs.innerHTML = 'Click here to close this pop-up';
+}
+
+function hideAvailableClubs() {
+    listOfAvailableClubs.style.display = 'none';
 }
 
 // const firstClubName = document.getElementById('first-club-name');

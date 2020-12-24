@@ -28,10 +28,7 @@ button {
 }
 
 button,
-input {
-    font-family: 'Poppins', sans-serif;
-}
-
+input,
 body {
     font-family: 'Poppins', sans-serif;
 }
@@ -40,7 +37,7 @@ header {
     padding: 40px 20px;
     text-align: center;
     color: #fffafa;
-    background-image: url('images/football.png');
+    background-image: url('images/header-logo.png');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -52,14 +49,73 @@ header h1 {
     font-weight: 400;
 }
 
-header p:last-of-type {
+header h2 {
     margin-top: 2px;
+    font-weight: 400;
     font-size: 0.95em;
+}
+
+.available-clubs {
+    position: relative;
+    top: 15px;
+}
+
+.button-display-available-clubs {
+    border: none;
+    background-color: transparent;
+    color: #fffafa;
+    font-size: 0.9em;
+    font-weight: 700;
+    transition: color 0.3s linear;
+}
+
+.button-display-available-clubs:hover,
+.button-display-available-clubs:focus {
+    color: #fc8621;
+}
+
+.list-of-available-clubs {
+    display: none;
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    width: 90%;
+    transform: translateX(-50%);
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fff;
+    color: #616161;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.list-of-available-clubs p:first-of-type {
+    font-size: 0.95em;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.list-of-available-clubs p:last-of-type {
+    font-size: 0.9em;
+}
+
+.button-hide-available-clubs {
+    border: none;
+    background-color: transparent;
+    font-size: 0.9em;
+    font-weight: 700;
+    color: #616161;
+    margin: 8px 0 6px 0;
+    transition: color 0.3s linear;
+}
+
+.button-hide-available-clubs:hover,
+.button-hide-available-clubs:focus {
+    color: #fc8621;
 }
 
 .initial-container {
     padding: 30px 20px;
-    /* border: 1px solid red; */
 }
 
 .instructions-container {
@@ -151,49 +207,11 @@ header p:last-of-type {
     display: none;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Comparison container */
-
-.initial-container {
-    /* display: none; */
-}
-
 .comparison-container {
     display: none;
     width: 92%;
     margin: 20px auto 0px auto;
 }
-
-
-
-
 
 .comparison-container table {
     width: 100%;
@@ -259,7 +277,6 @@ header p:last-of-type {
 }
 
 .comparison-caption {
-    /* display: none; */
     margin-top: 15px;
 } 
 
@@ -290,7 +307,87 @@ header p:last-of-type {
     transition: color 0.3s linear;
 }
 
-.actions-container button:hover,
-.actions-container button:focus {
+.button-compare-other-clubs:hover,
+.button-compare-other-clubs:focus {
     color: #fc8621;
+}
+
+
+/* Media queries */
+@media (min-width: 760px) {
+
+    .initial-container {
+        width: 550px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .comparison-container {
+        width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
+
+@media (min-width: 1360px) {
+
+    header {
+        padding: 30px 20px;
+        width: 550px;
+        margin: 0 auto;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.8);
+    }
+
+    header h1 {
+        font-size: 2.2em;
+    }
+
+    header h2 {
+        margin: 5px 0 20px 0;
+        font-size: 0.9em;
+    }
+
+    .available-clubs {
+        top: 0;
+    }
+    
+    .list-of-available-clubs {
+        width: 450px;
+        top: 18px;
+    }
+
+    .list-of-available-clubs p:first-of-type {
+        font-size: 0.85em;
+        margin-bottom: 3px;
+    }
+
+    .list-of-available-clubs p:last-of-type {
+        font-size: 0.85em;
+    }
+
+    .button-hide-available-clubs {
+        font-size: 0.85em;
+    }
+
+}
+
+@media (min-width: 1600px) {
+
+    header {
+        padding: 40px 20px;
+    }
+
+    .list-of-available-clubs {
+        top: 25px;
+    }
+
+    .list-of-available-clubs p:first-of-type,
+    .list-of-available-clubs p:last-of-type,
+    .button-hide-available-clubs {
+        font-size: 0.9em;
+    }
+
 }
