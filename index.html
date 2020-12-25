@@ -11,7 +11,6 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-
     <header>
         <h1>Club Comparison</h1>
         <h2>Find out who is the biggest club in Brazil.</h2>
@@ -26,29 +25,29 @@
     </header>
 
     <div class="initial-container">
-
         <div class="instructions-container">
             <p>INSTRUCTIONS</p>
             <p class="current-instruction">Choose the first club that you would like to compare.</p>
         </div>
-
         <p class="summary-choices"></p>
-
         <div class="input-container">
             <input type="text" class="input-club" placeholder="Inform the first club"> 
             <ul class="list-clubs"></ul>
         </div>
-
         <div class="actions-container">
             <button class="button-start-again">START AGAIN</button>
             <button class="button-choose-second-club">CHOOSE SECOND CLUB</button>
             <button class="button-compare-clubs">COMPARE CLUBS</button>
         </div>
-
+        <div class="error-container">
+            <img src="images/warning.png">
+            <h1>An error has occured.</h1>
+            <p>You must choose two different clubs to visualize the comparison between them.</p>
+            <button class="button-restart-comparison">Restart comparison</button>
+        </div>
     </div>
 
     <div class="comparison-container">
-
         <table>
             <tr class="comparison-header">
                 <td>
@@ -102,16 +101,12 @@
                 <td id="second-club-state-championship"></td>
             </tr>
         </table>
-
         <div class="comparison-caption">
             <h1>Table's captions</h1>
             <p>Brasileirão – Brazilian Championship</p>
             <p class="state-championship-caption">Estadual – State Championship</p>
         </div>
-
         <button class="button-compare-other-clubs">Compare other clubs</button>
-
     </div>
-
 </body>
 </html>

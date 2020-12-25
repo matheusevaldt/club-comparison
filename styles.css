@@ -19,12 +19,25 @@
     -webkit-tap-highlight-color: transparent;
 }
 
+:root {
+    --main-color: #fc8621;
+    --text-grey-color: #616161;
+    --text-white-color: #fffafa;
+    --border-color: rgba(0, 0, 0, 0.1);
+}
+
 ul {
     list-style: none;
 }
 
 button {
     cursor: pointer;
+    transition: color 0.3s linear;
+}
+
+button:hover,
+button:focus {
+    color: var(--main-color);
 }
 
 button,
@@ -36,7 +49,7 @@ body {
 header {
     padding: 40px 20px;
     text-align: center;
-    color: #fffafa;
+    color: var(--text-white-color);
     background-image: url('images/header-logo.png');
     background-position: center;
     background-size: cover;
@@ -63,15 +76,9 @@ header h2 {
 .button-display-available-clubs {
     border: none;
     background-color: transparent;
-    color: #fffafa;
+    color: var(--text-white-color);
     font-size: 0.9em;
     font-weight: 700;
-    transition: color 0.3s linear;
-}
-
-.button-display-available-clubs:hover,
-.button-display-available-clubs:focus {
-    color: #fc8621;
 }
 
 .list-of-available-clubs {
@@ -81,11 +88,11 @@ header h2 {
     left: 50%;
     width: 90%;
     transform: translateX(-50%);
-    border: 2px solid rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--border-color);
     border-radius: 5px;
     padding: 10px;
     background-color: #fff;
-    color: #616161;
+    color: var(--text-grey-color);
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
@@ -104,14 +111,8 @@ header h2 {
     background-color: transparent;
     font-size: 0.9em;
     font-weight: 700;
-    color: #616161;
+    color: var(--text-grey-color);
     margin: 8px 0 6px 0;
-    transition: color 0.3s linear;
-}
-
-.button-hide-available-clubs:hover,
-.button-hide-available-clubs:focus {
-    color: #fc8621;
 }
 
 .initial-container {
@@ -127,14 +128,14 @@ header h2 {
     position: relative;
     font-size: 1em;
     font-weight: 700;
-    color: #fc8621;
+    color: var(--main-color);
     margin-bottom: 2px;
 }
 
 .instructions-container p:last-of-type,
 .summary-choices {
     font-size: 0.9em;
-    color: #616161;
+    color: var(--text-grey-color);
 }
 
 .summary-choices {
@@ -154,7 +155,7 @@ header h2 {
 }
 
 .input-club {
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     padding: 10px;
 }
@@ -168,6 +169,11 @@ header h2 {
 
 .list-clubs li {
     padding: 8px 0;
+    cursor: default;
+}
+
+.list-clubs li:hover {
+    color: var(--text-grey-color);
 }
 
 .input-club-adjust {
@@ -177,7 +183,7 @@ header h2 {
 
 .list-clubs-adjust {
     display: block;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
     border-top: none;
 }
 
@@ -188,23 +194,47 @@ header h2 {
     margin-top: 20px;
 }
 
-.actions-container button {
+.button-start-again,
+.button-choose-second-club,
+.button-compare-clubs {
     border: none;
     background-color: transparent;
     font-size: 0.8em;
     font-weight: 700;
-    color: #4e4e4e;
+    color: var(--text-grey-color);
     padding: 10px 0;
-    transition: color 0.3s linear;
-}
-
-.actions-container button:hover,
-.actions-container button:focus {
-    color: #fc8621;
 }
 
 .button-compare-clubs {
     display: none;
+}
+
+.error-container {
+    display: none;
+    text-align: center;
+}
+
+.error-container img {
+    width: 48px;
+}
+
+.error-container h1 {
+    font-size: 0.95em;
+    margin: 2px 0 5px 0;
+}
+
+.error-container p {
+    font-size: 0.9em;
+    color: var(--text-grey-color);
+}
+
+.button-restart-comparison {
+    border: none;
+    background-color: transparent;
+    font-size: 0.9em;
+    font-weight: 700;
+    color: var(--text-grey-color);
+    margin-top: 25px;
 }
 
 .comparison-container {
@@ -215,7 +245,7 @@ header h2 {
 
 .comparison-container table {
     width: 100%;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
     border-collapse: collapse;
 }
 
@@ -239,7 +269,7 @@ header h2 {
     transform: translateX(-50%);
     z-index: -1;
     object-fit: cover;
-    opacity: 0.2;
+    opacity: 0.3;
 }
 
 .comparison-header td:nth-of-type(1),
@@ -249,7 +279,7 @@ header h2 {
 }
 
 .comparison-header td:nth-of-type(2) {
-    color: #616161;
+    color: var(--text-grey-color);
 }
 
 .comparison-row {
@@ -257,7 +287,7 @@ header h2 {
     grid-template-columns: repeat(3, 1fr);
     text-align: center;
     padding: 7px 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 1px solid var(--border-color);
 }
 
 .comparison-row td {
@@ -269,7 +299,7 @@ header h2 {
 
 .comparison-row td:nth-of-type(2) {
     font-size: 0.8em;
-    color: #616161;
+    color: var(--text-grey-color);
 }
 
 .state-championship-comparison {
@@ -283,7 +313,7 @@ header h2 {
 .comparison-caption h1 {
     font-weight: 400;
     margin-bottom: 1px;
-    color: #616161;
+    color: var(--text-grey-color);
 }
 
 .comparison-caption h1, 
@@ -302,16 +332,9 @@ header h2 {
     background-color: transparent;
     font-size: 0.85em;
     font-weight: 700;
-    color: #4e4e4e;
+    color: var(--text-grey-color);
     padding: 0 10px;
-    transition: color 0.3s linear;
 }
-
-.button-compare-other-clubs:hover,
-.button-compare-other-clubs:focus {
-    color: #fc8621;
-}
-
 
 /* Media queries */
 @media (min-width: 760px) {
